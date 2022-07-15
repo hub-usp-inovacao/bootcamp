@@ -6,40 +6,16 @@
     max-width="1000"
     flat
   >
-    <v-card-title>
-      Formulário
-    </v-card-title>
-    <v-card-text>
-      <v-form>
-        <v-text-field
-            v-model="name"
-            label="Name"
-          ></v-text-field>
-  
-          <v-text-field
-            v-model="cpf"
-            label="CPF"
-          ></v-text-field>
-  
-          <v-text-field
-            v-model="email"
-            label="Email"
-          ></v-text-field>
-      </v-form>
-
-      <v-list-item>
-        {{ name }}
-      </v-list-item>
-
-       <v-list-item>
-        {{ cpf }}
-      </v-list-item>
-
-       <v-list-item>
-        {{ email }}
-      </v-list-item>
-
-    </v-card-text>
+    <Forms
+      @inputName="name=$event"
+      @inputCpf="cpf=$event"
+      @inputEmail="email=$event"
+    />
+    <Display
+      :name=name
+      :cpf=cpf
+      :email=email
+    />
   </v-card>
 
    
@@ -48,11 +24,21 @@
 </template>
 
 <script>
+
+import Forms from "@/components/Forms.vue"
+import Display from "@/components/Display.vue"
+
 export default {
+  components: {
+    Forms,
+    Display,
+  },
+
   data: () => ({
       name: '',
       cpf: '',
       email: '',
     }),
+
 };
 </script>
