@@ -8,15 +8,21 @@ class UsersController < ActionController::API
     end
 
     def read
-        instance = User.find_by!({ id: "42" })
-        render status: :created
-    rescue StandardError => e
-        render json: { error: e }, status: :bad_request
+        instance = User.find(params[:id])
+        if instance != nil 
+            render json: instance
+        else 
+            render json: { error: "Invalid id" }, status: :bad_request
+        end
     end
 
     def readAll
         @user = User.all
         render json: @user, status: :ok
+    end
+
+    def deleteAll
+        User.delete_all
     end
 
     def create_params
@@ -37,4 +43,6 @@ ActionController::Parameters.new(
             cpf: "123456789" })
 
 =end
+
+
 

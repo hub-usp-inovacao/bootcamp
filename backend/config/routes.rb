@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do 
-  get "/", to: "application#index"
-  #get "/users/:id", to: "users#read"
-  get "/users/readAll", to: "users#readAll"
-  post "/users", to: "users#create"
+  get '/users', to: 'users#readAll'
+  get '/users/:id', to: 'users#read'
+  post '/users', to: 'users#create'
+  delete '/users', to: 'users#deleteAll'
 end
