@@ -3,21 +3,21 @@
 		<v-form ref="form">
 			<v-text-field
 				v-model="inputs.name"
-				:label="label('name')"
+				label="Nome"
 				:rules="[v => !!v || 'O nome é obrigatório']"
 				required
 			></v-text-field>
 		 
 			<v-text-field
 				v-model="inputs.cpf"
-				:label="label('cpf')"
+				label="CPF"
 				:rules="[v => !!v || 'O CPF é obrigatório']"
 				required
 			></v-text-field>
 
 			<v-text-field
 				v-model="inputs.email"
-				:label="label('email')"
+				label="E-mail"
 				:rules="[v => !!v || 'O e-mail é obrigatório']"
 				required
 			></v-text-field>
@@ -33,18 +33,18 @@
 			</div>
 
 			<div style="margin-top: 16px;" v-if="sent">
-				<ul>
-					<li v-for="(value, key) in inputs" :key="key">
-						<b>{{ label(key) }}</b>: {{ value }}
-					</li>
-				</ul>
+				<DisplayFields :fields="inputs" />
 			</div>
 		</v-form>
 	</v-sheet>
 </template>
 
 <script>
+	import DisplayFields from '../components/DisplayFields.vue'
 	export default {
+		components: {
+			DisplayFields
+		},
 		data: () => ({
 			sent: false,
 			valid: false,
@@ -66,16 +66,6 @@
 					this.sent = true
 				}
 			},
-			label(field) {
-				switch (field) {
-					case 'name':
-						return 'Nome'
-					case 'email':
-						return 'E-mail'
-					case 'cpf':
-						return 'CPF'
-				}
-			}
 		},
 	}
 </script>
