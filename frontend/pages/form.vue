@@ -1,27 +1,18 @@
 <template>
 	<v-sheet width="300" class="mx-auto">
 		<v-form ref="form">
-			<v-text-field
-				v-model="inputs.name"
-				label="Nome"
-				:rules="[v => !!v || 'O nome é obrigatório']"
-				required
-			></v-text-field>
-		 
+
+			<InputText :field="inputs" />
+		
 			<v-text-field
 				v-model="inputs.cpf"
 				label="CPF"
 				:rules="[v => !!v || 'O CPF é obrigatório']"
 				required
-			></v-text-field>
-
-			<v-text-field
-				v-model="inputs.email"
-				label="E-mail"
-				:rules="[v => !!v || 'O e-mail é obrigatório']"
-				required
-			></v-text-field>
-
+			></v-text-field> 
+			
+			<InputEmail :field="inputs" />
+			
 			<div class="d-flex flex-column">
 				<v-btn
 				  class="send mt-4"
@@ -41,9 +32,14 @@
 
 <script>
 	import DisplayFields from '../components/DisplayFields.vue'
+	import InputText from '../components/InputText.vue'
+	import InputEmail from '../components/InputEmail.vue'
+
 	export default {
 		components: {
-			DisplayFields
+			DisplayFields,
+			InputText,
+			InputEmail
 		},
 		data: () => ({
 			sent: false,
