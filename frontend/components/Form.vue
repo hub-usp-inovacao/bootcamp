@@ -2,12 +2,7 @@
   <v-form @submit.prevent="send" ref="form">
     <InputText :field="inputs" />
 
-    <v-text-field
-      v-model="inputs.cpf"
-      label="CPF"
-      :rules="[v => !!v || 'O CPF é obrigatório']"
-      required
-    ></v-text-field>
+    <InputCPF :field="inputs" />
 
     <InputEmail :field="inputs" />
 
@@ -26,11 +21,13 @@
 <script>
   import InputText from '../components/InputText.vue'
   import InputEmail from '../components/InputEmail.vue'
+  import InputCPF from '../components/InputCPF.vue'
 
   export default {
     components: {
       InputText,
       InputEmail,
+      InputCPF,
     },
     props: {
       inputs: {
@@ -51,8 +48,8 @@
         await this.validate()
         if (this.valid && !this.sent) {
           this.sent = true
+          this.$emit('submitted')
         }
-        this.$emit('submitted')
       },
     }
   }
